@@ -1,0 +1,325 @@
+.search-admin-pan{
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;justify-content: space-between;
+    color: #868C98;
+}
+
+.input-serch-admin{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 40px;
+    border: 1px solid #E2E4E9;
+    border-radius: 10px;
+    width: 240px;
+    color: #868C98;
+    padding-left: 5px;
+}
+
+.input-serch-admin input{
+    border: none;
+    height: 35px;
+    color: #868C98;
+}
+
+.bell-admin-pan{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-admin-pan{
+    display: flex;align-items: center;gap: 5px;
+    border: 1px solid #E2E4E9;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+.user-admin-pan img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+@media (max-width:500px) {
+    .input-serch-admin{
+        display: none;
+    }
+    .bell-admin-pan{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .rayting-admin{
+        width: 90% !important;
+    }
+    .rayting-admin-p{
+        font-family: "Inter", sans-serif; 
+        font-size: 20px;
+        font-weight: 500 !important;
+    }
+    .filter-admin p{
+        font-size: 14px;
+    }
+    .filter-admin{
+        padding: 5px 10px !important;
+    }
+    
+}
+.admin-hr{
+    width: 100%;
+    border: 1px solid #E2E4E9;
+    margin-top: 10px;
+}
+
+.rayting-admin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.rayting-admin-p{
+    font-family: "Inter", sans-serif; 
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.filter-admin{
+    display: flex;align-items: center;gap: 5px;
+    border: 1px solid #E2E4E9;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #868C98;
+}
+.RiArrowDropDownLine{
+    font-size: 20px;
+}
+.search-input-admin input{
+    border: none;
+    height: 35px;
+    color: #868C98;
+    width: 90%;
+}
+.search-input-admin{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 40px;
+    border: 1px solid #E2E4E9;
+    border-radius: 10px;
+    width: 400px;
+    color: #868C98;
+    padding-left: 5px;
+}
+.search-filter-admin{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    gap: 30px;  
+}
+
+.filter-admin-pan, .sortirovka-admin-pan{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 40px;
+    border: 1px solid #E2E4E9;
+    padding: 0px 10px;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif; 
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
+
+.filter-little-modal{
+    width: 300px;
+    text-align: start;
+    background-color: #fff;
+    z-index: 999;
+    position: absolute;
+    margin-top: 450px;
+    margin-left: -20px;
+    display: none;
+}
+
+.filter-little-modal1{
+    width: 300px;
+    text-align: start;
+    background-color: #fff;
+    z-index: 999;
+    position: absolute;
+    margin-top: 400px;
+    margin-left: -20px;
+    display: none;
+}
+.filter-little-modal2{
+    width: 200px;
+    text-align: start;
+    background-color: #fff;
+    z-index: 999;
+    position: absolute;
+    margin-top: 420px;
+    margin-left: -20px;
+    display: none;
+}
+
+.filter-little-modal1 hr {
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* margin: auto; */
+    margin-left: 5%;
+    border: 1px solid #E2E4E9;
+}
+
+.filter-balls{
+    width: 90%;
+    margin: auto;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-family: "Inter", sans-serif; 
+    color: #525866 !important;
+    cursor: pointer;
+}
+.type-filter{
+    color: #868C98 ;
+    width: 85%;
+    margin: auto;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    font-family: "Inter", sans-serif; 
+}
+.filter-balls:hover{
+    background-color: #F6F8FA;
+    color: black !important;
+}
+
+.IoChevronUpOutline{
+    display: none;
+}
+.IoChevronUpOutline1{
+    display: none;
+}
+@media (max-width:650px) {
+    .filter-admin-pan p, .sortirovka-admin-pan p{
+    display: none;
+    }
+    .filter-admin-pan, .sortirovka-admin-pan{
+        font-size: 17px;
+    }
+    .search-input-admin{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        height: 40px;
+        border: 1px solid #E2E4E9;
+        border-radius: 10px;
+        width: 400px;
+        color: #868C98;
+        padding-left: 5px;
+    }
+}
+@media (max-width:500px) {
+    .search-filter-admin{
+        width: 90%;
+    }
+}
+
+.show-point-admin{
+    display: flex;
+    align-items: center;
+    gap: 200px;
+    background-color: #F6F8FA;
+    width: 80%;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px 10px;
+    color: #525866;
+}
+
+.poryadok-nomer, .users-name, .users-point, .users-all-time{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Inter", sans-serif; 
+}
+
+.big-div-admin-pan{
+    display: flex;
+    align-items: center;gap: 100px;
+}
+.big-div-admin-pan2{
+    display: flex;
+    align-items: center;gap: 200px;
+}
+.big-div-admin-pan3{
+    display: flex;
+    align-items: center;gap: 200px;
+}
+.big-div-admin-pan4{
+    display: flex;
+    align-items: center;gap: 160px;
+}
+
+
+.users-point-admin-panel{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;gap: 130px;
+}
+.users-id-admin{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.img-users-admin{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.img-users-admin img{
+    width: 100%;
+}
+.users-info-admin{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.name-mail-users-admin{
+    text-align: start;
+    font-family: "Inter", sans-serif; 
+}
+.name-mail-users-admin p{
+    font-size: 20px;
+    font-weight: 550;
+}
+.name-mail-users-admin span{
+    font-size: 13px;
+    font-weight: 450;
+    color: #525866;
+}
+
+.users-point-admin p{
+    font-family: "Inter", sans-serif; 
+    font-weight: 550;
+}
+
+.users-point-admin span{
+    font-size: 12px;
+    color: #3281FF;
+}

@@ -1,17 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./signin.css"
 import logo from "./logo.svg"
 import { IoPerson, IoChevronDownOutline  } from "react-icons/io5";
 import { CiMail, CiLock } from "react-icons/ci";
 import { FaRegEye } from "react-icons/fa";
+import axios from 'axios';
 import { RiGlobalLine } from "react-icons/ri";
 
 export default function Signin() {
+
+  const [data, setData] = useState([]);
+
+
+  function Signin12() {
+    var formdata = new FormData();
+    formdata.append("email", document.querySelector("#email").value);
+    formdata.append("password", document.querySelector("#password").value);
+
+
+      axios
+      .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/login`, formdata)
+      .then((res) => {
+        alert("good")
+      })
+      .catch((err) => {
+        alert('Не правильная электронная почта или пароль');
+      });
+  }
   return (
     <div className='Signin'>
         <div className="nav">
           <img src={logo} alt="" />
-          <p>У вас ещё нет учетная запись? <a href="#">Регистрация</a></p>
+          <p>У вас ещё нет учетная запись? <span >Регистрация</span></p>
         </div>
         <div className="signin">
           <div className="kotta-signin">
@@ -34,12 +54,12 @@ export default function Signin() {
             <p >Адрес электронной почты</p> 
             <div className="input-email">
             <CiMail />
-            <input placeholder='hello@world.com' type="text" />
+            <input id='email' placeholder='hello@world.com' type="text" />
             </div>
             <p className='password-text'>Пароль</p>
             <div className="input-password">
             <CiLock />
-            <input placeholder='• • • • • • • • • • ' type="password" />
+            <input id='password' placeholder='• • • • • • • • • • ' type="password" />
             <FaRegEye />
             </div>
             <div className="forget-password-signin">
@@ -52,7 +72,7 @@ export default function Signin() {
 </div>
 
             </div>
-            <button>Войти</button>
+            <button onClick={()=>Signin12()}>Войти</button>
           </div>   
           </div>
 

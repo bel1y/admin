@@ -12,8 +12,10 @@
     font-family: "Inter", sans-serif;
     font-size: 15px;
 }
-.nav a{
+.nav span{
     color: #375DFB;
+    cursor: pointer;
+    text-decoration: underline;
 }
 *{
     margin: 0;
@@ -122,7 +124,8 @@
     font-family: "Inter", sans-serif;
     font-weight: 600;
     margin-bottom: 10px;
-    margin-left: 0px;   
+    margin-left: 0px; 
+    text-align: start ;  
 }
 
 .password-text{
@@ -305,7 +308,6 @@
 .little-footer-signin{
     display: flex;
     align-items: center;
-    justify-content: center;
     justify-content: space-between;
     width: 80%;
     margin: auto;
@@ -313,6 +315,21 @@
 }
 
 .little-footer-signin p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #525866;
+}
+.little-footer-signin2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.little-footer-signin2 p{
     display: flex;
     align-items: center;
     gap: 5px;
