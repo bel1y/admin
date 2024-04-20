@@ -3,18 +3,20 @@ import { CiSearch, CiCalendar  } from "react-icons/ci";
 import { FaRegBell, FaSortDown, FaSort   } from "react-icons/fa";
 import "./admin.css"
 import imglogo from './Avatar.svg'
-import { IoFilterSharp, IoChevronDownOutline, IoChevronUpOutline } from "react-icons/io5";
+import { IoFilterSharp, IoChevronDownOutline } from "react-icons/io5";
 import { GoSortDesc } from "react-icons/go";
 import axios from 'axios';
+import { VscKebabVertical } from "react-icons/vsc";
 
 export default function Admin() {
 
     const [data, setData] = useState([]);
 
 useEffect(() => {
-axios.get('https://backent-admin-oyin-html-css.onrender.com/auth/v1/users')
+axios.get('https://api.abbas.uz/api/v1/game_user/all')
 .then(res=>{
     setData(res.data)
+    // console.log(res.data);
 })
 .catch(err=>{
     alert("d")
@@ -22,31 +24,41 @@ axios.get('https://backent-admin-oyin-html-css.onrender.com/auth/v1/users')
 })
 
 function OpenFilter() {
-    
-    document.querySelector(".filter-little-modal").style="display:block"
+document.querySelector(".filter-little-modal").classList.toggle("filter-little-modal_1")
     document.querySelector(".filter-little-modal1").style="display:none"
-    document.querySelector(".filter-little-moda2").style="display:none"
+    document.querySelector(".filter-little-modal2").style="display:none"
 
 }
 function OpenSortirovka() {
-    
-    document.querySelector(".filter-little-modal").style="display:none"
-    document.querySelector(".filter-little-modal1").style="display:block"
-    document.querySelector(".filter-little-moda2").style="display:none"
-    document.querySelector(".IoChevronDownOutline").style="display:none"
-    document.querySelector(".IoChevronUpOutline").style="display:block"
+    document.querySelector(".filter-little-modal1").classList.toggle("filter-little-modal_2")
+    // document.querySelector(".filter-little-modal").style="display:none"
+    document.querySelector(".filter-little-modal2").style="display:none"
 }
 function OpenFilterMonth() {
     
     document.querySelector(".filter-little-modal2").style="display:block"
     document.querySelector(".filter-little-modal1").style="display:none"
     document.querySelector(".filter-little-modal").style="display:none"
-    document.querySelector(".IoChevronDownOutline1").style="display:none"
-    document.querySelector(".IoChevronUpOutline1").style="display:block"
+}
+
+function BgcChange() {
+document.querySelector(".show-point-admin1").style="background:#E2EEFA"
+}
+
+function OpenKategoriya() {
+    document.querySelector('.close-kategoriya').style="display:block"
+    document.querySelector('.open-kategoriya').style="display:none"
+    document.querySelector('.show-point-admin2').style="display:flex"
+}
+function CloseKategoriya() {
+    document.querySelector('.close-kategoriya').style="display:none"
+    document.querySelector('.open-kategoriya').style="display:block"
+    document.querySelector('.show-point-admin2').style="display:none"
 }
 
   return (
     <div>
+        <div className="for_main">
         <div className="search-admin-pan">
             <div className="input-serch-admin">
             <CiSearch />
@@ -68,7 +80,6 @@ function OpenFilterMonth() {
             <CiCalendar />
             <p>6 месяцев</p>
             <IoChevronDownOutline  className='IoChevronDownOutline1'/>
-            <IoChevronUpOutline className='IoChevronUpOutline1'/>
             <div className="filter-little-modal2">
                 <p className='filter-balls'>1 месяц</p>
                 <p className='filter-balls'>2 месяцев</p>
@@ -90,6 +101,7 @@ function OpenFilterMonth() {
             <CiSearch/>
             <input type="text" placeholder='Поиск' />
             </div>
+            <div className="for_filter">
             <div className="filter-admin-pan" onClick={()=>OpenFilter()}>
                  <IoFilterSharp />
             <p>Фильтр </p>
@@ -108,11 +120,11 @@ function OpenFilterMonth() {
                 <p className='filter-balls'>Правильный маршрут</p>
             </div>
             </div>
+            </div>
           <div className="sortirovka-admin-pan" onClick={()=>OpenSortirovka()}>
           <GoSortDesc />
           <p>Сортировка</p>
           <p><IoChevronDownOutline className='IoChevronDownOutline'/></p>
-          <p><IoChevronUpOutline className='IoChevronUpOutline'/></p>
           <div className="filter-little-modal1">
                 <p className='type-filter'>по дате прохождения</p>
                 <p className='filter-balls'>Cначала старые</p>
@@ -128,60 +140,87 @@ function OpenFilterMonth() {
             </div>
           </div>
         </div>
-        <div className="show-point-admin">
-        <div className="big-div-admin-pan">
-        <div className="poryadok-nomer">
-                <p>Порядковый номер</p>
-                <FaSort />
-            </div>
-        <div className="users-name">
-            <p>Имя участника</p>
-            <FaSort />
-        </div>
-        </div>
-        <div className="big-div-admin-pan2">
-        <div className="users-point">
-            <p>Очки</p>
-            <FaSort />
-        </div>
-        <div className="users-all-time">
-            <p>Общая время</p>
-            <FaSort />
-        </div>
-        </div>
-        </div>
-        <div className="users-point-admin-panel">
-       
-            {data.map(item=>{
-                return <>
-                <div className="big-div-admin-pan3">
-            <div className="users-id-admin">
-                <input type="checkbox" />
-                <p># {item.id}</p>
-            </div>
-                 <div className="users-info-admin">
-                <div className="img-users-admin">
+        <table className='table-admin'> 
+             <tr className='show-point-admin'>
+            <th className='wdth-bolishuchun'><p>Порядковый номер</p>
+                <FaSort /></th>
+            <th className='wdth-bolishuchun'><p>Имя участника</p>
+            <FaSort /></th>
+            <th className='wdth-bolishuchun'><p>Очки</p>
+            <FaSort /></th>
+            <th className='wdth-bolishuchun'><p>Общая время</p>
+            <FaSort /></th>
+            <th className='VscKebabVertical'> </th>
+          </tr>
+          {data.map(item=>{
+           return <>
+          <tr className='show-point-admin1'>
+            <td className='wdth-bolishuchun'>
+                <input type="checkbox" onClick={()=>BgcChange()}/> 
+            #{item.id}
+            </td>
+            <td className='img-name-login-admin-pan wdth-bolishuchun'>
+            <div className="img-users-admin">
                     <img src={item.image} alt="" />
                 </div>
                 <div className="name-mail-users-admin">
-                    <p>{item.name}</p>
+                    <p>{item.fullname}</p>
                     <span>{item.email}</span>
                 </div>
-            </div>
-             </div>
-                </>
-            })}
-           
-           
-            <div className="big-div-admin-pan4">
-                <div className="users-point-admin">
-                    <p>1642</p>
-                    <span>Показать по диагностике</span>
-                </div>
-                <div className="users-all-time-admin">
-                    <p>05 мин 42 сек</p>
-                </div>
-            </div>
+            </td>
+            <td className='users-point-admin wdth-bolishuchun'>
+            <p>1642</p>
+            <span className='open-kategoriya' onClick={()=>OpenKategoriya()}>Показать по диагностике</span>
+            <span className='close-kategoriya' onClick={()=>CloseKategoriya()}>Скрыть</span>
+            </td>
+            <td className='wdth-bolishuchun'>
+            <p>05 мин 42 сек</p>
+            </td>
+            <td className='VscKebabVertical'><VscKebabVertical /></td>
+            </tr>
+            <tr className='show-point-admin2'>
+            <td className='wdth-bolishuchun'>
+
+            </td>
+            <td className='game-kategoriya-admin wdth-bolishuchun'>
+           <p>Корректурная проба</p>
+           <p>Выбери подходящее выражение</p>
+           <p>Таблица Шульте</p>
+           <p>Сосчитай фигуры</p>
+           <p>Расставь предметы</p>
+           <p>Поиск букв</p>
+           <p>Пары по картинкам</p>
+           <p>Выбери вид сверху</p>
+           <p>Правильный маршрут</p>
+            </td>
+            <td className='game-kategoriya-admin wdth-bolishuchun'>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            <p>1642</p>
+            </td>
+            <td className='game-kategoriya-admin wdth-bolishuchun'>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            <p>05 мин 42 сек</p>
+            </td>
+            <td className='VscKebabVertical'> </td>
+            </tr>
+            </>
+        })}
+
+        </table>
         </div>
     </div>
   )

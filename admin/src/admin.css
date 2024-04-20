@@ -1,5 +1,10 @@
+*{
+    box-sizing: border-box;
+}
 .search-admin-pan{
-    padding: 15px 30px;
+    max-width: 1400px;
+    width: 100%;
+    padding: 15px 20px;
     display: flex;
     align-items: center;justify-content: space-between;
     color: #868C98;
@@ -17,10 +22,15 @@
     padding-left: 5px;
 }
 
+.for_filter{
+    position: relative;
+}
+
 .input-serch-admin input{
     border: none;
     height: 35px;
     color: #868C98;
+    outline: none;
 }
 
 .bell-admin-pan{
@@ -76,8 +86,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    max-width: 1400px;
+    width: 100%;
     margin: auto;
+    padding: 0 20px;
     margin-top: 30px;
     cursor: pointer;
 }
@@ -102,6 +114,7 @@
     height: 35px;
     color: #868C98;
     width: 90%;
+    outline: none;
 }
 .search-input-admin{
     display: flex;
@@ -115,12 +128,14 @@
     padding-left: 5px;
 }
 .search-filter-admin{
-    width: 80%;
-    margin: auto;
     margin-top: 50px;
     display: flex;
     align-items: center;
-    gap: 30px;  
+    gap: 30px;
+    max-width: 1400px;
+    width: 100%;
+    margin: auto;
+    padding: 15px 20px;
 }
 
 .filter-admin-pan, .sortirovka-admin-pan{
@@ -134,8 +149,8 @@
     font-family: "Inter", sans-serif; 
     font-size: 14px;
     cursor: pointer;
-    position: relative;
 }
+
 
 .filter-little-modal{
     width: 300px;
@@ -143,8 +158,8 @@
     background-color: #fff;
     z-index: 999;
     position: absolute;
-    margin-top: 450px;
-    margin-left: -20px;
+    left: 0;
+    top: 100px;
     display: none;
 }
 
@@ -173,13 +188,12 @@
     width: 90%;
     margin-top: 10px;
     margin-bottom: 10px;
-    /* margin: auto; */
     margin-left: 5%;
     border: 1px solid #E2E4E9;
 }
 
 .filter-balls{
-    width: 90%;
+    width: 100%;
     margin: auto;
     height: 30px;
     border-radius: 10px;
@@ -206,12 +220,7 @@
     color: black !important;
 }
 
-.IoChevronUpOutline{
-    display: none;
-}
-.IoChevronUpOutline1{
-    display: none;
-}
+
 @media (max-width:650px) {
     .filter-admin-pan p, .sortirovka-admin-pan p{
     display: none;
@@ -238,50 +247,58 @@
 }
 
 .show-point-admin{
-    display: flex;
-    align-items: center;
-    gap: 200px;
+    display: flex;align-items: center;
     background-color: #F6F8FA;
-    width: 80%;
-    margin: auto;
+    width: 100%;
     border-radius: 10px;
     margin-top: 20px;
     padding: 10px 10px;
     color: #525866;
+    font-family: "Inter", sans-serif; 
+}
+.show-point-admin th{
+    color: #525866;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
 }
 
-.poryadok-nomer, .users-name, .users-point, .users-all-time{
+.show-point-admin1{
+    display: flex;align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif; 
+    margin-top: 20px;
+}
+.show-point-admin1 td, .show-point-admin2 td{
+    font-size: 15px;
     display: flex;
     align-items: center;
     gap: 5px;
-    font-family: "Inter", sans-serif; 
+    padding:10px;
+    font-weight: 550;
+}
+.wdth-bolishuchun{
+    width: 25%;
 }
 
-.big-div-admin-pan{
-    display: flex;
-    align-items: center;gap: 100px;
-}
-.big-div-admin-pan2{
-    display: flex;
-    align-items: center;gap: 200px;
-}
-.big-div-admin-pan3{
-    display: flex;
-    align-items: center;gap: 200px;
-}
-.big-div-admin-pan4{
-    display: flex;
-    align-items: center;gap: 160px;
+.filter-little-modal_1{
+    display: block !important;
 }
 
+.img-name-login-admin-pan{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-.users-point-admin-panel{
-    width: 80%;
+.table-admin{  
+      max-width: 1400px;
+    width: 100%;
     margin: auto;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;gap: 130px;
+    padding: 15px 20px;
 }
+
 .users-id-admin{
     display: flex;
     align-items: center;
@@ -305,7 +322,7 @@
     font-family: "Inter", sans-serif; 
 }
 .name-mail-users-admin p{
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 550;
 }
 .name-mail-users-admin span{
@@ -314,6 +331,10 @@
     color: #525866;
 }
 
+.users-point-admin{
+    display: block !important;
+    text-align: start;
+}
 .users-point-admin p{
     font-family: "Inter", sans-serif; 
     font-weight: 550;
@@ -322,4 +343,40 @@
 .users-point-admin span{
     font-size: 12px;
     color: #3281FF;
+    cursor: pointer;
+}
+.close-kategoriya{
+    display: none;
+}
+
+.VscKebabVertical{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.game-kategoriya-admin{
+    display: block !important;
+    text-align: start;
+    font-family: "Inter", sans-serif; 
+
+}
+.show-point-admin2{
+    display: none;
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif; 
+    margin-top: 20px;
+}
+
+.game-kategoriya-admin p{
+    margin-top: 10px;
+    font-size: 15px !important;
+    font-weight: 550;
+}
+
+.filter-little-modal_2{
+    display: block;
 }
