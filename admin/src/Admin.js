@@ -20,10 +20,8 @@ axios.get('https://api.abbas.uz/api/v1/game_user/all')
     setData(res.data)
 })
 .catch(err=>{
-    // alert("Технические ошибки, зайдите через немножко")
+
 })
-
-
 })
 
 function OpenFilter() {
@@ -48,15 +46,26 @@ function BgcChange() {
 document.querySelector(".show-point-admin1").style="background:#E2EEFA"
 }
 
-function OpenKategoriya() {
-    document.querySelector('.close-kategoriya').style="display:block"
-    document.querySelector('.open-kategoriya').style="display:none"
-    document.querySelector('.show-point-admin2').style="display:flex"
+function OpenKategoriya(id) {
+for (let i = 0; i < document.querySelectorAll('.close-kategoriya').length; i++) {
+  if(id==i){
+   document.querySelectorAll('.close-kategoriya')[i].style="display:block"
+    document.querySelectorAll('.open-kategoriya')[i].style="display:none"
+    document.querySelectorAll('.show-point-admin2')[i].style="display:flex" 
+  }else{
+    document.querySelectorAll('.close-kategoriya')[i].style="display:none"
+    document.querySelectorAll('.open-kategoriya')[i].style="display:block"
+    document.querySelectorAll('.show-point-admin2')[i].style="display:none"
+  }
+    
 }
-function CloseKategoriya() {
-    document.querySelector('.close-kategoriya').style="display:none"
-    document.querySelector('.open-kategoriya').style="display:block"
-    document.querySelector('.show-point-admin2').style="display:none"
+    
+
+}
+function CloseKategoriya(id) {
+         document.querySelectorAll('.close-kategoriya')[id].style="display:none"
+        document.querySelectorAll('.open-kategoriya')[id].style="display:block"
+        document.querySelectorAll('.show-point-admin2')[id].style="display:none"  
 }
 
   return (
@@ -155,7 +164,7 @@ function CloseKategoriya() {
             <FaSort /></th>
             <th className='VscKebabVertical'> </th>
           </tr>
-          {data.map(item=>{
+          {data.map((item,key)=>{
            return <>
           <tr className='show-point-admin1'>
             <td className='wdth-bolishuchun'>
@@ -173,8 +182,8 @@ function CloseKategoriya() {
             </td>
             <td className='users-point-admin wdth-bolishuchun'>
             <p>1642</p>
-            <span className='open-kategoriya' onClick={()=>OpenKategoriya()}>Показать по диагностике</span>
-            <span className='close-kategoriya' onClick={()=>CloseKategoriya()}>Скрыть</span>
+            <span className='open-kategoriya' onClick={()=>OpenKategoriya(key)}>Показать по диагностике</span>
+            <span className='close-kategoriya' onClick={()=>CloseKategoriya(key)}>Скрыть</span>
             </td>
             <td className='wdth-bolishuchun'>
             <p>05 мин 42 сек</p>
