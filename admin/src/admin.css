@@ -387,15 +387,20 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    color: #525866;
     }
 .delete-change-admin p:hover{
 background-color: #F6F8FA;
+color: #000;
 }
 .delete-change-admin p:hover .RiDeleteBin6Line{
     color: #375DFB;
     }
-.delete-change-admin p:hover .CiEdit{
+.delete-change-admin p:hover .FiEdit3{
     color: #375DFB;
+    }
+    .filter-little-modal_4{
+        display: block !important;
     }
 
 
@@ -426,5 +431,6 @@ background-color: #F6F8FA;
 .filter-little-modal_3{
     display: block !important;
 }
-
- 
+.filter-little-modal_5{
+background:#E2EEFA
+}

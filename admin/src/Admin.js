@@ -8,6 +8,7 @@ import { GoSortDesc } from "react-icons/go";
 import axios from 'axios';
 import { VscKebabVertical } from "react-icons/vsc";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiEdit3 } from "react-icons/fi";
 
 export default function Admin() {
 
@@ -75,8 +76,15 @@ function OpenFilterMonth() {
     document.querySelector(".filter-little-modal").style="display:none"
 }
 
-function BgcChange() {
-document.querySelector(".show-point-admin1").style="background:#E2EEFA"
+function BgcChange(id) {
+    for (let i = 0; i < document.querySelectorAll(".show-point-admin1").length; i++) {
+        if(id==i){
+            document.querySelectorAll(".show-point-admin1")[i].classList.toggle("filter-little-modal_5")
+        }else{
+
+        }
+          
+      }
 }
 
 function allResult(data){
@@ -119,6 +127,18 @@ function CloseKategoriya(id) {
          document.querySelectorAll('.close-kategoriya')[id].style="display:none"
         document.querySelectorAll('.open-kategoriya')[id].style="display:block"
         document.querySelectorAll('.show-point-admin2')[id].style="display:none"  
+}
+
+function openEditDelete(id){
+    for (let i = 0; i < document.querySelectorAll(".delete-change-admin").length; i++) {
+        if(id==i){
+            document.querySelectorAll(".delete-change-admin")[i].classList.toggle("filter-little-modal_4")
+        }else{
+
+        }
+          
+      }
+    
 }
 
   return (
@@ -221,7 +241,7 @@ function CloseKategoriya(id) {
            return <>
           <tr className='show-point-admin1'>
             <td className='wdth-bolishuchun'>
-                <input type="checkbox" onClick={()=>BgcChange()}/> 
+                <input type="checkbox" onClick={()=>BgcChange(key)}/> 
             #{item.id}
             </td>
             <td className='img-name-login-admin-pan wdth-bolishuchun'>
@@ -242,10 +262,10 @@ function CloseKategoriya(id) {
             <p>{item.gl_res.min} мин {item.gl_res.sec} сек</p>
             </td>
             <td className='VscKebabVertical'>
-                <VscKebabVertical />
+                <VscKebabVertical onClick={()=>openEditDelete(key)}/>
                 <div className="delete-change-admin">
                     <span>Параметры</span>
-                    <p><CiEdit className='CiEdit'/> Изменить</p>
+                    <p><FiEdit3 className='FiEdit3'/> Изменить</p>
                     <p><RiDeleteBin6Line className='RiDeleteBin6Line'/> удалить</p>
                 </div>
                 </td>
