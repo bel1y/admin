@@ -3,9 +3,10 @@ import "./signin.css"
 import logo from "./logo.svg"
 import { IoPerson, IoChevronDownOutline  } from "react-icons/io5";
 import { CiMail, CiLock } from "react-icons/ci";
-import { FaRegEye } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from 'axios';
 import { RiGlobalLine } from "react-icons/ri";
+
 
 export default function Signin() {
 
@@ -21,17 +22,26 @@ export default function Signin() {
       axios
       .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/login`, formdata)
       .then((res) => {
-        alert("good")
+        window.location = "/admin"
+      localStorage.setItem("info", JSON.stringify(res.data))
       })
       .catch((err) => {
         alert('Не правильная электронная почта или пароль');
       });
   }
+  function OpenSignup() {
+    window.location = "/signup"
+  }
+
+  function viewPassore() {
+    
+  }
+
   return (
     <div className='Signin'>
-        <div className="nav">
+  <div className="nav">
           <img src={logo} alt="" />
-          <p>У вас ещё нет учетная запись? <span >Регистрация</span></p>
+          <p>У вас ещё нет учетная запись? <span onClick={()=>OpenSignup()}>Регистрация</span></p>
         </div>
         <div className="signin">
           <div className="kotta-signin">
@@ -61,6 +71,7 @@ export default function Signin() {
             <CiLock />
             <input id='password' placeholder='• • • • • • • • • • ' type="password" />
             <FaRegEye />
+            <FaRegEyeSlash className='FaRegEyeSlash' />
             </div>
             <div className="forget-password-signin">
 <div className="chekbox-signin">
@@ -81,6 +92,8 @@ export default function Signin() {
           <p>© 2023 Mozg</p>
           <p><RiGlobalLine /> РУ <IoChevronDownOutline /></p>
         </div>
+
+      
     </div>
   )
 }

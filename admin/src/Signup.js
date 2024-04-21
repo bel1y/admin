@@ -26,19 +26,23 @@ export default function Signup() {
     .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/users/admin`, formdata)
     .then((res) => {
       localStorage.setItem("info", JSON.stringify(res.data))
-      // console.log(res.data);
-      // console.log("helo");
+      window.location = "/admin"
+
     })
     .catch((err) => {
       alert('Такой аккаунт с таким "email" уже существует ');
     });
+
   }
+      function OpenSignin() {
+      window.location = "/"
+    }
   return (
     <div className="Signin">
       <div className="nav">
         <img src={logo} alt="" />
         <p>
-          У вас уже есть учетная запись? <a href="#">Войти</a>
+          У вас уже есть учетная запись? <span onClick={()=>OpenSignin()}>Войти</span>
         </p>
       </div>
       <div className="signin">
