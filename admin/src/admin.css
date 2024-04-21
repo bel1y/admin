@@ -5,9 +5,12 @@
     max-width: 1400px;
     width: 100%;
     padding: 15px 20px;
-    display: flex;
-    align-items: center;justify-content: space-between;
     color: #868C98;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    cursor: pointer;
 }
 
 .input-serch-admin{
