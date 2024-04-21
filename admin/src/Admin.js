@@ -12,18 +12,51 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 export default function Admin() {
 
     const [data, setData] = useState([]);
-    const [game, setGame] = useState([]);
+  
 
 useEffect(() => {
 axios.get('https://api.abbas.uz/api/v1/game_user/all')
 .then(res=>{
+    for (let i = 0; i < res.data.length; i++) {
+    res.data[i].gl_res=allResult(res.data[i].user_game)
+for (let j = 0; j < res.data[i].user_game.length; j++) {
+    res.data[i].user_game[j].gl_res=oneResult(res.data[i].user_game[j].game_number,res.data[i].user_game)
+}
+
+}
+console.log(res.data);
     setData(res.data)
 })
 .catch(err=>{
 
 })
-})
+},[])
+function oneHTML(id,item,type){
+if(type=="sec"){
+  if((item.user_game.filter(item1=>item1.game_number==id)).length>0){
+   return (item.user_game.filter(item1=>item1.game_number==id))[0].gl_res.sec
 
+}else{
+    return "0"
+}
+}
+if(type=="min"){
+    if((item.user_game.filter(item1=>item1.game_number==id)).length>0){
+        return (item.user_game.filter(item1=>item1.game_number==id))[0].gl_res.min
+     
+     }else{
+         return "0"
+     }
+}
+if(type=="score"){
+    if((item.user_game.filter(item1=>item1.game_number==id)).length>0){
+        return (item.user_game.filter(item1=>item1.game_number==id))[0].gl_res.score
+     
+     }else{
+         return "0"
+     }
+}
+}
 function OpenFilter() {
 document.querySelector(".filter-little-modal").classList.toggle("filter-little-modal_1")
     document.querySelector(".filter-little-modal1").style="display:none"
@@ -45,6 +78,26 @@ function OpenFilterMonth() {
 function BgcChange() {
 document.querySelector(".show-point-admin1").style="background:#E2EEFA"
 }
+
+function allResult(data){
+    var time=0
+    var score=0
+    for (let i = 0; i < data.length; i++) {
+      time=time+(data[i].time)*1
+      score=score+(data[i].result)*1
+    }
+        var min=(time/60).toFixed(0)
+    var sec=(((time/60)%1)*60).toFixed(0)
+
+return {time,score,sec,min}
+}
+
+function oneResult(id,data) {
+ var d=data.filter(item=>item.game_number==id)
+var send_data=allResult(d)
+return send_data
+}
+
 
 function OpenKategoriya(id) {
 for (let i = 0; i < document.querySelectorAll('.close-kategoriya').length; i++) {
@@ -181,12 +234,12 @@ function CloseKategoriya(id) {
                 </div>
             </td>
             <td className='users-point-admin wdth-bolishuchun'>
-            <p>1642</p>
+            <p>{item.gl_res.score}</p>
             <span className='open-kategoriya' onClick={()=>OpenKategoriya(key)}>Показать по диагностике</span>
             <span className='close-kategoriya' onClick={()=>CloseKategoriya(key)}>Скрыть</span>
             </td>
             <td className='wdth-bolishuchun'>
-            <p>05 мин 42 сек</p>
+            <p>{item.gl_res.min} мин {item.gl_res.sec} сек</p>
             </td>
             <td className='VscKebabVertical'>
                 <VscKebabVertical />
@@ -213,26 +266,26 @@ function CloseKategoriya(id) {
            <p>Правильный маршрут</p>
             </td>
             <td className='game-kategoriya-admin wdth-bolishuchun'>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
-            <p>1642</p>
+            <p>{oneHTML(1,item,"score")}</p>
+            <p>{oneHTML(2,item,"score")}</p>
+            <p>{oneHTML(3,item,"score")}</p>
+            <p>{oneHTML(4,item,"score")}</p>
+            <p>{oneHTML(5,item,"score")}</p>
+            <p>{oneHTML(6,item,"score")}</p>
+            <p>{oneHTML(7,item,"score")}</p>
+            <p>{oneHTML(8,item,"score")}</p>
+            <p>{oneHTML(9,item,"score")}</p>
             </td>
             <td className='game-kategoriya-admin wdth-bolishuchun'>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
-            <p>05 мин 42 сек</p>
+            <p>{oneHTML(1,item,"min")} мин {oneHTML(1,item,"sec")} сек</p>
+            <p>{oneHTML(2,item,"min")} мин {oneHTML(2,item,"sec")} сек</p>
+            <p>{oneHTML(3,item,"min")} мин {oneHTML(3,item,"sec")} сек</p>
+            <p>{oneHTML(4,item,"min")} мин {oneHTML(4,item,"sec")} сек</p>
+            <p>{oneHTML(5,item,"min")} мин {oneHTML(5,item,"sec")} сек</p>
+            <p>{oneHTML(6,item,"min")} мин {oneHTML(6,item,"sec")} сек</p>
+            <p>{oneHTML(7,item,"min")} мин {oneHTML(7,item,"sec")} сек</p>
+            <p>{oneHTML(8,item,"min")} мин {oneHTML(8,item,"sec")} сек</p>
+            <p>{oneHTML(9,item,"min")} мин {oneHTML(9,item,"sec")} сек</p>
             </td>
             <td className='VscKebabVertical'> </td>
             </tr>
