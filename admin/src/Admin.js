@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { CiSearch, CiCalendar  } from "react-icons/ci";
+import { CiSearch, CiCalendar, CiEdit   } from "react-icons/ci";
 import { FaRegBell, FaSortDown, FaSort   } from "react-icons/fa";
 import "./admin.css"
 import imglogo from './Avatar.svg'
@@ -7,20 +7,23 @@ import { IoFilterSharp, IoChevronDownOutline } from "react-icons/io5";
 import { GoSortDesc } from "react-icons/go";
 import axios from 'axios';
 import { VscKebabVertical } from "react-icons/vsc";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function Admin() {
 
     const [data, setData] = useState([]);
+    const [game, setGame] = useState([]);
 
 useEffect(() => {
 axios.get('https://api.abbas.uz/api/v1/game_user/all')
 .then(res=>{
     setData(res.data)
-    // console.log(res.data);
 })
 .catch(err=>{
-    alert("d")
+    // alert("Технические ошибки, зайдите через немножко")
 })
+
+
 })
 
 function OpenFilter() {
@@ -176,7 +179,14 @@ function CloseKategoriya() {
             <td className='wdth-bolishuchun'>
             <p>05 мин 42 сек</p>
             </td>
-            <td className='VscKebabVertical'><VscKebabVertical /></td>
+            <td className='VscKebabVertical'>
+                <VscKebabVertical />
+                <div className="delete-change-admin">
+                    <span>Параметры</span>
+                    <p><CiEdit className='CiEdit'/> Изменить</p>
+                    <p><RiDeleteBin6Line className='RiDeleteBin6Line'/> удалить</p>
+                </div>
+                </td>
             </tr>
             <tr className='show-point-admin2'>
             <td className='wdth-bolishuchun'>
