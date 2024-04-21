@@ -13,7 +13,55 @@ import { FiEdit3 } from "react-icons/fi";
 export default function Admin() {
 
     const [data, setData] = useState([]);
-  
+  const [org_data,orgSetData]=useState([])
+    function getUserGamesByUserId(userId, months) {
+        const user = data.find(u => u.id === userId);
+      
+        if (!user) {
+          return null; // User not found
+        }
+      
+        const currentDate = new Date();
+        const startDate = new Date(currentDate.getTime() - months * 30 * 24 * 60 * 60 * 1000);
+     
+        const filteredUserGames = user.user_game.filter(game => {
+          const gameDate = new Date(game.time_create);
+          return gameDate >= startDate;
+        });
+        return filteredUserGames;
+      }
+
+function filterMonth(month){
+    if(month==1){
+       document.querySelector('.filter-admin p').innerHTML=`${month} месяц`  
+    }
+    if(month==12){
+        document.querySelector('.filter-admin p').innerHTML=`1 год`  
+     }
+     if(month!=12 && month!=1){
+        document.querySelector('.filter-admin p').innerHTML=`${month} месяцев`  
+     }
+   
+    axios.get('https://api.abbas.uz/api/v1/game_user/all')
+.then(res=>{
+for (let i = 0; i < res.data.length; i++) {
+   res.data[i]=getUserGamesByUserId(res.data[i],month)
+}
+    for (let i = 0; i < res.data.length; i++) {     
+    res.data[i].gl_res=allResult(res.data[i].user_game)
+for (let j = 0; j < res.data[i].user_game.length; j++) {
+    res.data[i].user_game[j].gl_res=oneResult(res.data[i].user_game[j].game_number,res.data[i].user_game)
+}
+
+}
+    setData(res.data)
+orgSetData(res.data)
+
+})
+.catch(err=>{
+
+})
+}
 
 useEffect(() => {
 axios.get('https://api.abbas.uz/api/v1/game_user/all')
@@ -25,13 +73,80 @@ for (let j = 0; j < res.data[i].user_game.length; j++) {
 }
 
 }
+setData(res.data)
+orgSetData(res.data)
 console.log(res.data);
-    setData(res.data)
 })
 .catch(err=>{
 
 })
 },[])
+function searchdata(e) {
+    var a=e.target.value
+    console.log(a);
+var d=[...org_data]
+setData(d.filter(item=>((item.fullname).includes(a) || (item.email).includes(a))))  
+}
+function sordData_time() {
+    var people=[...data]
+    people.sort((a, b) => a.gl_res.time - b.gl_res.time);
+setData(people)
+}
+function sordData_time_revel() {
+    var people=[...data]
+    people.sort((a, b) => b.gl_res.time-a.gl_res.time);
+setData(people)
+}
+function sortByTimeUpdate() {
+    var data1=[...data]
+    console.log("asdas");
+     data1.sort((a, b) => new Date(a.time_update) - new Date(b.time_update));
+     setData(data1)
+  }
+  function sortByTimeUpdateRevel() {
+    var data1=[...data]
+    console.log("asdas");
+
+     data1.sort((a, b) =>  new Date(b.time_update)- new Date(a.time_update) );
+     setData(data1)
+  }
+    
+function sordData_ball() {
+    var people=[...data]
+    people.sort((a, b) => b.gl_res.score - a.gl_res.score);
+setData(people)
+}
+function sordData_ball_revel() {
+    var people=[...data]
+    people.sort((a, b) => a.gl_res.score-b.gl_res.score);
+setData(people)
+}
+function filterGame(id) {
+    axios.get('https://api.abbas.uz/api/v1/game_user/all')
+    .then(res=>{
+   for (let i = 0; i < res.data.length; i++) {
+    var a=res.data[i].user_game.filter(item=>(item.game_number==id))
+      res.data[i].user_game=a
+    }
+        for (let i = 0; i < res.data.length; i++) {     
+        res.data[i].gl_res=allResult(res.data[i].user_game)
+    for (let j = 0; j < res.data[i].user_game.length; j++) {
+        res.data[i].user_game[j].gl_res=oneResult(res.data[i].user_game[j].game_number,res.data[i].user_game)
+    }
+    }
+    
+   
+        setData(res.data)
+    orgSetData(res.data)
+    
+    })
+    .catch(err=>{
+    
+    })
+    var game=[...org_data]
+    
+   setData(game)
+}
 function oneHTML(id,item,type){
 if(type=="sec"){
   if((item.user_game.filter(item1=>item1.game_number==id)).length>0){
@@ -70,7 +185,6 @@ function OpenSortirovka() {
     document.querySelector(".filter-little-modal2").style="display:none"
 }
 function OpenFilterMonth() {
-    
     document.querySelector(".filter-little-modal2").classList.toggle("filter-little-modal_3")
     document.querySelector(".filter-little-modal1").style="display:none"
     document.querySelector(".filter-little-modal").style="display:none"
@@ -181,7 +295,7 @@ function closeEdit(){
         <div className="search-admin-pan">
             <div className="input-serch-admin">
             <CiSearch />
-                <input placeholder='Search...' type="text" />
+                <input placeholder='Search...' onKeyUp={(e)=>searchdata(e)} type="text" />
             </div>
             <div className="bell-admin-pan">
             <FaRegBell /> 
@@ -200,25 +314,25 @@ function closeEdit(){
             <p>6 месяцев</p>
             <IoChevronDownOutline  className='IoChevronDownOutline1'/>
             <div className="filter-little-modal2">
-                <p className='filter-balls'>1 месяц</p>
-                <p className='filter-balls'>2 месяцев</p>
-                <p className='filter-balls'>3 месяцев</p>
-                <p className='filter-balls'>4 месяцев</p>
-                <p className='filter-balls'>5 месяцев</p>
-                <p className='filter-balls'>6 месяцев</p>
-                <p className='filter-balls'>7 месяцев</p>
-                <p className='filter-balls'>8 месяцев</p>
-                <p className='filter-balls'>9 месяцев</p>
-                <p className='filter-balls'>10 месяцев</p>
-                <p className='filter-balls'>11 месяцев</p>
-                <p className='filter-balls'>1 год</p>
+                <p className='filter-balls' onClick={()=>filterMonth(1)} >1 месяц</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(2)} >2 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(3)} >3 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(4)} >4 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(5)} >5 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(6)} >6 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(7)} >7 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(8)} >8 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(9)} >9 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(10)} >10 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(11)} >11 месяцев</p>
+                <p className='filter-balls'  onClick={()=>filterMonth(12)} >1 год</p>
             </div>
             </div>
         </div>
         <div className="search-filter-admin">
             <div className="search-input-admin">
             <CiSearch/>
-            <input type="text" placeholder='Поиск' />
+            <input type="text" onKeyUp={(e)=>{searchdata(e)}} placeholder='Поиск' />
             </div>
             <div className="for_filter">
             <div className="filter-admin-pan" onClick={()=>OpenFilter()}>
@@ -226,17 +340,17 @@ function closeEdit(){
             <p>Фильтр </p>
             <div className="filter-little-modal">
                 <p className='type-filter'>Фильтр</p>
-                <p className='filter-balls'>баллы - от и до</p>
-                <p className='filter-balls'>время - от и до</p>
-                <p className='filter-balls'>Корректурная проба</p>
-                <p className='filter-balls'>Выбери подходящее выражение</p>
-                <p className='filter-balls'>Таблица Шульте</p>
-                <p className='filter-balls'>Расставь предметы</p>
-                <p className='filter-balls'>Сосчитай фигуры</p>
-                <p className='filter-balls'>Поиск букв</p>
-                <p className='filter-balls'>Пары по картинкам</p>
-                <p className='filter-balls'>Выбери вид сверху</p>
-                <p className='filter-balls'>Правильный маршрут</p>
+                <p className='filter-balls' onClick={()=>{sordData_ball()}} >баллы - от и до</p>
+                <p onClick={()=>sordData_time()} className='filter-balls'>время - от и до</p>
+                <p className='filter-balls' onClick={()=>filterGame(1)}>Корректурная проба</p>
+                <p className='filter-balls'  onClick={()=>filterGame(2)}>Выбери подходящее выражение</p>
+                <p className='filter-balls'  onClick={()=>filterGame(3)}>Таблица Шульте</p>
+                <p className='filter-balls'  onClick={()=>filterGame(4)}>Расставь предметы</p>
+                <p className='filter-balls'  onClick={()=>filterGame(5)}>Сосчитай фигуры</p>
+                <p className='filter-balls'  onClick={()=>filterGame(6)}>Поиск букв</p>
+                <p className='filter-balls'  onClick={()=>filterGame(7)}>Пары по картинкам</p>
+                <p className='filter-balls'  onClick={()=>filterGame(8)}>Выбери вид сверху</p>
+                <p className='filter-balls'  onClick={()=>filterGame(9)}>Правильный маршрут</p>
             </div>
             </div>
             </div>
@@ -246,16 +360,16 @@ function closeEdit(){
           <p><IoChevronDownOutline className='IoChevronDownOutline'/></p>
           <div className="filter-little-modal1">
                 <p className='type-filter'>по дате прохождения</p>
-                <p className='filter-balls'>Cначала старые</p>
-                <p className='filter-balls'>Cначала новые </p>
+                <p className='filter-balls' onClick={()=>sortByTimeUpdateRevel()}>Cначала старые</p>
+                <p className='filter-balls' onClick={()=>sortByTimeUpdate()}>Cначала новые </p>
                 <hr />
                 <p className='type-filter'>По количеству баллов</p>
-                <p className='filter-balls'>Максимум</p>
-                <p className='filter-balls'>Минимум</p>
+                <p className='filter-balls' onClick={()=>sordData_ball()} >Максимум</p>
+                <p className='filter-balls' onClick={()=>{sordData_ball_revel()}} >Минимум</p>
                 <hr />
                 <p className='type-filter'>По количеству времени</p>
-                <p className='filter-balls'>Максимум, потраченному на диа </p>
-                <p className='filter-balls'>Минимум, потраченному на диа </p>
+                <p className='filter-balls' onClick={()=>sordData_time_revel()} >Максимум, потраченному на диа </p>
+                <p onClick={()=>{sordData_time()}} className='filter-balls'>Минимум, потраченному на диа </p>
             </div>
           </div>
         </div>
