@@ -149,6 +149,7 @@
     font-family: "Inter", sans-serif; 
     font-size: 14px;
     cursor: pointer;
+    position: relative;
 }
 
 
@@ -417,5 +418,10 @@ background-color: #F6F8FA;
 }
 
 .filter-little-modal_2{
-    display: block;
+    display: block !important;
 }
+.filter-little-modal_3{
+    display: block !important;
+}
+
+ 

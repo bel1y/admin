@@ -59,18 +59,18 @@ if(type=="score"){
 }
 function OpenFilter() {
 document.querySelector(".filter-little-modal").classList.toggle("filter-little-modal_1")
-    document.querySelector(".filter-little-modal1").style="display:none"
+    document.querySelector(".filter-little-modal1").style="display:none "
     document.querySelector(".filter-little-modal2").style="display:none"
 
 }
 function OpenSortirovka() {
     document.querySelector(".filter-little-modal1").classList.toggle("filter-little-modal_2")
-    // document.querySelector(".filter-little-modal").style="display:none"
+    document.querySelector(".filter-little-modal").style="display:none"
     document.querySelector(".filter-little-modal2").style="display:none"
 }
 function OpenFilterMonth() {
     
-    document.querySelector(".filter-little-modal2").style="display:block"
+    document.querySelector(".filter-little-modal2").classList.toggle("filter-little-modal_3")
     document.querySelector(".filter-little-modal1").style="display:none"
     document.querySelector(".filter-little-modal").style="display:none"
 }
