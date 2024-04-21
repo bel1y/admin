@@ -3,7 +3,7 @@ import { CiSearch, CiCalendar, CiEdit   } from "react-icons/ci";
 import { FaRegBell, FaSortDown, FaSort   } from "react-icons/fa";
 import "./admin.css"
 import imglogo from './Avatar.svg'
-import { IoFilterSharp, IoChevronDownOutline } from "react-icons/io5";
+import { IoFilterSharp, IoChevronDownOutline, IoClose  } from "react-icons/io5";
 import { GoSortDesc } from "react-icons/go";
 import axios from 'axios';
 import { VscKebabVertical } from "react-icons/vsc";
@@ -141,8 +141,42 @@ function openEditDelete(id){
     
 }
 
+function openEdit(){
+    document.querySelector(".big-modal-for-edit-admin").style="display:flex"
+}
+function closeEdit(){
+    document.querySelector(".big-modal-for-edit-admin").style="display:none"
+}
+
   return (
     <div>
+        <div className="big-modal-for-edit-admin">
+            <IoClose onClick={()=>closeEdit()} className='IoClose'/>
+            <div className="modal-for-edit-admin">
+                <h2>Изменение Данных Игрока</h2>
+                <div className="inputs-edit-admin">
+                    <div className="input-edit-admin">
+                    <p>Изоброжение <span>*</span></p>
+                    <input className='type-file-admin' type="file" />
+                    </div>
+                    <div className="input-edit-admin">
+                    <p>Имя <span>*</span></p>
+                    <input type="text" placeholder='Имя'/>
+                    </div>
+                </div>
+                <div className="inputs-edit-admin">
+                    <div className="input-edit-admin">
+                    <p>Эмаил <span>*</span></p>
+                    <input type="Text" placeholder='Эмаил'/>
+                    </div>
+                    <div className="input-edit-admin">
+                    <p>Пароль <span>*</span></p>
+                    <input type="password" placeholder='• • • • • • • • • • '/>
+                    </div>
+                </div>
+                <button>Изменить</button>
+            </div>
+        </div>
         <div className="for_main">
         <div className="search-admin-pan">
             <div className="input-serch-admin">
@@ -265,7 +299,7 @@ function openEditDelete(id){
                 <VscKebabVertical onClick={()=>openEditDelete(key)}/>
                 <div className="delete-change-admin">
                     <span>Параметры</span>
-                    <p><FiEdit3 className='FiEdit3'/> Изменить</p>
+                    <p onClick={()=>openEdit()}><FiEdit3 className='FiEdit3' /> Изменить</p>
                     <p><RiDeleteBin6Line className='RiDeleteBin6Line'/> удалить</p>
                 </div>
                 </td>

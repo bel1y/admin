@@ -371,6 +371,7 @@
     width: 150px;
     position: absolute;
     top: 50px;
+    z-index: 999;
 }
 .delete-change-admin span{
     color: #868C98;
@@ -433,4 +434,69 @@ color: #000;
 }
 .filter-little-modal_5{
 background:#E2EEFA
+}
+
+.big-modal-for-edit-admin{
+    background-color: #000000a6;
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-for-edit-admin{
+    width: 500px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.inputs-edit-admin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    margin-top: 30px ;
+    font-family: "Inter", sans-serif; 
+    text-align: start;
+    font-weight: 550;
+}
+.input-edit-admin input{
+outline: none;
+border: 1px solid #E2E4E9;
+width: 200px;
+height: 35px;
+border-radius: 10px;
+margin-top: 10px;
+padding-left: 5px;
+}
+.input-edit-admin span{
+    color: #3281FF;
+}
+.type-file-admin{
+    border: none !important;
+    padding: 5px;
+}
+.modal-for-edit-admin button{
+    width: 150px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    background-color: #3281FF;
+    color: #fff;
+    margin-top: 50px;
+}
+.IoClose{
+    position: absolute;
+    color: #fff;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
 }
