@@ -47,12 +47,50 @@
     border: 1px solid #E2E4E9;
     border-radius: 10px;
     padding: 10px 15px;
+    position: relative;
 }
 .user-admin-pan img{
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
+
+.Quit-from-akk{
+    position: absolute;
+    z-index: 999;
+    width: 120px;
+    background-color: #fff;
+    height: 40px;
+    top: 52px;
+    left: 0;
+    border-left: 1px solid #E2E4E9;
+    border-right: 1px solid #E2E4E9;
+    border-bottom: 1px solid #E2E4E9;
+    border-radius: 10px;
+    padding: 4px 0px 0px 0px;
+    display: none;
+}
+.Quit-akk{
+    display: block;
+}
+.Quit-from-akk p{
+    font-family: "Inter", sans-serif; 
+    width: 90%;
+    margin: auto;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+.Quit-from-akk p:hover{
+background-color: #F6F8FA;
+color: #000;
+}
+.Quit-from-akk p:hover .FaPersonWalkingDashedLineArrowRight{
+    color: #3281FF;
+    }
 @media (max-width:500px) {
     .input-serch-admin{
         display: none;

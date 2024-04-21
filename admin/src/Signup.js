@@ -4,7 +4,7 @@ import logo from "./logo.svg";
 import { HiUserAdd } from "react-icons/hi";
 import { IoChevronDownOutline } from "react-icons/io5";
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
-import { FaRegEye } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { RiGlobalLine } from "react-icons/ri";
 import axios from "axios";
 
@@ -37,6 +37,18 @@ export default function Signup() {
       function OpenSignin() {
       window.location = "/"
     }
+
+    function viewPassore() {
+      document.querySelector(".FaRegEyeSlash1").style="display:block"
+      document.querySelector(".FaRegEye1").style="display:none"
+      document.querySelector("#password12").type="text"
+    }
+    function noviewPassore() {
+      document.querySelector(".FaRegEye1").style="display:block"
+      document.querySelector(".FaRegEyeSlash1").style="display:none"
+      document.querySelector("#password12").type="password"
+    }
+
   return (
     <div className="Signin">
       <div className="nav">
@@ -83,10 +95,11 @@ export default function Signup() {
               <CiLock />
               <input
                 id="password12"
-                placeholder="• • • • • • • • • • "
+                placeholder="password "
                 type="password"
               />
-              <FaRegEye />
+              <FaRegEye onClick={()=>viewPassore()} className="FaRegEye1"/>
+              <FaRegEyeSlash onClick={()=>noviewPassore()} className="FaRegEyeSlash1"/>
             </div>
 
             <button onClick={()=>Signup12()}>Войти</button>

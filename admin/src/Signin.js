@@ -22,8 +22,13 @@ export default function Signin() {
       axios
       .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/login`, formdata)
       .then((res) => {
-        window.location = "/admin"
-      localStorage.setItem("info", JSON.stringify(res.data))
+        // localStorage.setItem("info", JSON.stringify(res.data))
+        if (res.data.type == 1) {
+          window.location="/admin"
+        }
+        else{
+          alert("Вы не админ")
+        }
       })
       .catch((err) => {
         alert('Не правильная электронная почта или пароль');
@@ -34,8 +39,16 @@ export default function Signin() {
   }
 
   function viewPassore() {
-    
+    document.querySelector(".FaRegEyeSlash").style="display:block"
+    document.querySelector(".FaRegEye").style="display:none"
+    document.querySelector("#password").type="text"
   }
+  function noviewPassore() {
+    document.querySelector(".FaRegEye").style="display:block"
+    document.querySelector(".FaRegEyeSlash").style="display:none"
+    document.querySelector("#password").type="password"
+  }
+
 
   return (
     <div className='Signin'>
@@ -69,9 +82,9 @@ export default function Signin() {
             <p className='password-text'>Пароль</p>
             <div className="input-password">
             <CiLock />
-            <input id='password' placeholder='• • • • • • • • • • ' type="password" />
-            <FaRegEye />
-            <FaRegEyeSlash className='FaRegEyeSlash' />
+            <input id='password' placeholder='password' type="password" />
+            <FaRegEye className='FaRegEye' onClick={()=>viewPassore()}/>
+            <FaRegEyeSlash className='FaRegEyeSlash' onClick={()=>noviewPassore()}/>
             </div>
             <div className="forget-password-signin">
 <div className="chekbox-signin">

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { CiSearch, CiCalendar, CiEdit   } from "react-icons/ci";
-import { FaRegBell, FaSortDown, FaSort   } from "react-icons/fa";
+import { FaPersonWalkingDashedLineArrowRight } from "react-icons/fa6";
+import { FaRegBell, FaSortDown, FaSort } from "react-icons/fa";
 import "./admin.css"
 import imglogo from './Avatar.svg'
 import { IoFilterSharp, IoChevronDownOutline, IoClose  } from "react-icons/io5";
@@ -11,7 +12,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit3 } from "react-icons/fi";
 
 export default function Admin() {
-
+   
+    const [data1, setData1] = useState( JSON.parse(localStorage.getItem("info")));
     const [data, setData] = useState([]);
   const [org_data,orgSetData]=useState([])
     function getUserGamesByUserId(userId, months) {
@@ -80,6 +82,10 @@ console.log(res.data);
 .catch(err=>{
 
 })
+
+
+
+
 },[])
 function searchdata(e) {
     var a=e.target.value
@@ -262,6 +268,14 @@ function closeEdit(){
     document.querySelector(".big-modal-for-edit-admin").style="display:none"
 }
 
+function openQuit() {
+    document.querySelector(".Quit-from-akk").classList.toggle("Quit-akk")
+}
+function quitakk() {
+    window.location="/"
+    localStorage.clear("info")
+}
+
   return (
     <div>
         <div className="big-modal-for-edit-admin">
@@ -292,17 +306,17 @@ function closeEdit(){
             </div>
         </div>
         <div className="for_main">
-        <div className="search-admin-pan">
-            <div className="input-serch-admin">
+        <div className="search-admin-pan" >
+        <div className="input-serch-admin">
             <CiSearch />
                 <input placeholder='Search...' onKeyUp={(e)=>searchdata(e)} type="text" />
             </div>
-            <div className="bell-admin-pan">
-            <FaRegBell /> 
-            <div className="user-admin-pan">
-                <img src={imglogo} className='img-user-admin' alt="" />
-            <p>Sophia</p>
+            <div className="user-admin-pan" onClick={()=>openQuit()}>
+                <img src={data1.image} className='img-user-admin' alt="" />
+            <p>{data1.fullname}</p>
             <FaSortDown />
+            <div className="Quit-from-akk" onClick={()=>quitakk()}>
+                <p> <FaPersonWalkingDashedLineArrowRight className='FaPersonWalkingDashedLineArrowRight'/> Выйти</p>
             </div>
             </div>
         </div>
