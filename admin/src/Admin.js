@@ -279,6 +279,18 @@ function quitakk() {
     localStorage.clear("info")
 }
 
+function DeleteAccaunt(id) {
+    
+    axios.delete(`https://api.abbas.uz//auth/v1/users/${id}`)
+    .then(res=>{
+        alert("good")
+    })
+    .catch(err=>{
+        alert("bad")
+    })
+
+}
+
   return (
     <div>
         <div className="big-modal-for-edit-admin">
