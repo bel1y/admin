@@ -13,7 +13,7 @@ import { FiEdit3 } from "react-icons/fi";
 
 export default function Admin() {
    
-    const [data1, setData1] = useState( JSON.parse(localStorage.getItem("info")));
+    const [data1, setData1] = useState({});
     const [data, setData] = useState([]);
   const [org_data,orgSetData]=useState([])
     function getUserGamesByUserId(userId, months) {
@@ -66,6 +66,9 @@ orgSetData(res.data)
 }
 
 useEffect(() => {
+    if(localStorage.getItem("info")){
+        setData1(JSON.parse(localStorage.getItem("info")))
+    }
 axios.get('https://api.abbas.uz/api/v1/game_user/all')
 .then(res=>{
     for (let i = 0; i < res.data.length; i++) {
@@ -312,7 +315,7 @@ function quitakk() {
                 <input placeholder='Search...' onKeyUp={(e)=>searchdata(e)} type="text" />
             </div>
             <div className="user-admin-pan" onClick={()=>openQuit()}>
-                <img src={data1.image} className='img-user-admin' alt="" />
+                <img src={imglogo} className='img-user-admin' alt="" />
             <p>{data1.fullname}</p>
             <FaSortDown />
             <div className="Quit-from-akk" onClick={()=>quitakk()}>
