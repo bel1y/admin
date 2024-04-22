@@ -13,7 +13,7 @@ import { FiEdit3 } from "react-icons/fi";
 
 export default function Admin() {
    
-    const [data1, setData1] = useState( JSON.parse(localStorage.getItem("info")));
+    const [data1, setData1] = useState( []);
     const [data, setData] = useState([]);
   const [org_data,orgSetData]=useState([])
     function getUserGamesByUserId(userId, months) {
@@ -77,13 +77,14 @@ for (let j = 0; j < res.data[i].user_game.length; j++) {
 }
 setData(res.data)
 orgSetData(res.data)
-console.log(res.data);
+console.log(res.data, "sell");
 })
 .catch(err=>{
 
 })
 
 
+JSON.parse(localStorage.getItem("info"))
 
 
 },[])
@@ -261,8 +262,9 @@ function openEditDelete(id){
     
 }
 
-function openEdit(){
+function openEdit(id){
     document.querySelector(".big-modal-for-edit-admin").style="display:flex"
+    localStorage.setItem("id", id)
 }
 function closeEdit(){
     document.querySelector(".big-modal-for-edit-admin").style="display:none"
@@ -278,15 +280,77 @@ function quitakk() {
 
 function DeleteAccaunt(id) {
     
-    axios.delete(`https://api.abbas.uz//auth/v1/users/${id}`)
+    axios.delete(`https://api.abbas.uz/auth/v1/users/${id}`)
     .then(res=>{
-        alert("good")
+
+        axios.get('https://api.abbas.uz/api/v1/game_user/all')
+        .then(res=>{
+       for (let i = 0; i < res.data.length; i++) {
+        var a=res.data[i].user_game.filter(item=>(item.game_number==id))
+          res.data[i].user_game=a
+        }
+            for (let i = 0; i < res.data.length; i++) {     
+            res.data[i].gl_res=allResult(res.data[i].user_game)
+        for (let j = 0; j < res.data[i].user_game.length; j++) {
+            res.data[i].user_game[j].gl_res=oneResult(res.data[i].user_game[j].game_number,res.data[i].user_game)
+        }
+        }
+        
+       
+            setData(res.data)
+        orgSetData(res.data)
+        
+        })
+        .catch(err=>{
+        
+        })
     })
     .catch(err=>{
         alert("bad")
     })
 
 }
+
+function EditAccount(id) {
+    var formdata = new FormData();
+    formdata.append("email", document.querySelector("#email-admin").value);
+    formdata.append("password", document.querySelector("#password-admin").value);
+    formdata.append("image", document.querySelector("#image-admin").value);
+    formdata.append("fullname", document.querySelector("#name-admin").value);
+
+
+    axios.put(`https://api.abbas.uz/auth/v1/users/${localStorage.getItem("id")}`, formdata)
+    .then(res=>{
+
+        document.querySelector(".big-modal-for-edit-admin").style="display:none"
+
+        axios.get('https://api.abbas.uz/api/v1/game_user/all')
+        .then(res=>{
+       for (let i = 0; i < res.data.length; i++) {
+        var a=res.data[i].user_game.filter(item=>(item.game_number==id))
+          res.data[i].user_game=a
+        }
+            for (let i = 0; i < res.data.length; i++) {     
+            res.data[i].gl_res=allResult(res.data[i].user_game)
+        for (let j = 0; j < res.data[i].user_game.length; j++) {
+            res.data[i].user_game[j].gl_res=oneResult(res.data[i].user_game[j].game_number,res.data[i].user_game)
+        }
+        }
+        
+       
+            setData(res.data)
+        orgSetData(res.data)
+        
+        })
+        .catch(err=>{
+        
+        })
+    })
+    .catch(err=>{
+        alert("Вы не смогли изменить данные")
+    })
+}
+
 
   return (
     <div>
@@ -297,24 +361,24 @@ function DeleteAccaunt(id) {
                 <div className="inputs-edit-admin">
                     <div className="input-edit-admin">
                     <p>Изоброжение <span>*</span></p>
-                    <input className='type-file-admin' type="file" />
+                    <input className='type-file-admin' id='image-admin' type="file" />
                     </div>
                     <div className="input-edit-admin">
                     <p>Имя <span>*</span></p>
-                    <input type="text" placeholder='Имя'/>
+                    <input type="text" id='name-admin' placeholder='Имя'/>
                     </div>
                 </div>
                 <div className="inputs-edit-admin">
                     <div className="input-edit-admin">
                     <p>Эмаил <span>*</span></p>
-                    <input type="Text" placeholder='Эмаил'/>
+                    <input type="text" id='email-admin' placeholder='Эмаил'/>
                     </div>
                     <div className="input-edit-admin">
                     <p>Пароль <span>*</span></p>
-                    <input type="password" placeholder='• • • • • • • • • • '/>
+                    <input type="password" id='password-admin' placeholder='password'/>
                     </div>
                 </div>
-                <button>Изменить</button>
+                <button onClick={()=>EditAccount(localStorage.getItem("id"))}>Изменить</button>
             </div>
         </div>
         <div className="for_main">
@@ -324,8 +388,10 @@ function DeleteAccaunt(id) {
                 <input placeholder='Search...' onKeyUp={(e)=>searchdata(e)} type="text" />
             </div>
             <div className="user-admin-pan" onClick={()=>openQuit()}>
+
                 <img src={data1.image} className='img-user-admin' alt="" />
             <p>{data1.fullname}</p>
+            
             <FaSortDown />
             <div className="Quit-from-akk" onClick={()=>quitakk()}>
                 <p> <FaPersonWalkingDashedLineArrowRight className='FaPersonWalkingDashedLineArrowRight'/> Выйти</p>
@@ -439,8 +505,8 @@ function DeleteAccaunt(id) {
                 <VscKebabVertical onClick={()=>openEditDelete(key)}/>
                 <div className="delete-change-admin">
                     <span>Параметры</span>
-                    <p onClick={()=>openEdit()}><FiEdit3 className='FiEdit3' /> Изменить</p>
-                    <p><RiDeleteBin6Line className='RiDeleteBin6Line'/> удалить</p>
+                    <p onClick={()=>openEdit(item.id)}><FiEdit3 className='FiEdit3' /> Изменить</p>
+                    <p onClick={()=>DeleteAccaunt(item.id)}><RiDeleteBin6Line className='RiDeleteBin6Line'  /> удалить</p>
                 </div>
                 </td>
             </tr>
