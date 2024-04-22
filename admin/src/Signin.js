@@ -22,7 +22,7 @@ export default function Signin() {
       axios
       .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/login`, formdata)
       .then((res) => {
-        // localStorage.setItem("info", JSON.stringify(res.data))
+        localStorage.setItem("info", JSON.stringify(res.data))
         if (res.data.type == 1) {
           window.location="/admin"
         }

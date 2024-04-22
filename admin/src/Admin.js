@@ -13,7 +13,11 @@ import { FiEdit3 } from "react-icons/fi";
 
 export default function Admin() {
    
+<<<<<<< HEAD
     const [data1, setData1] = useState( []);
+=======
+    const [data1, setData1] = useState({});
+>>>>>>> b8a5d73ac2006b9574d9f1be90671e288c574fa6
     const [data, setData] = useState([]);
   const [org_data,orgSetData]=useState([])
     function getUserGamesByUserId(userId, months) {
@@ -66,6 +70,9 @@ orgSetData(res.data)
 }
 
 useEffect(() => {
+    if(localStorage.getItem("info")){
+        setData1(JSON.parse(localStorage.getItem("info")))
+    }
 axios.get('https://api.abbas.uz/api/v1/game_user/all')
 .then(res=>{
     for (let i = 0; i < res.data.length; i++) {
@@ -388,8 +395,8 @@ function EditAccount(id) {
                 <input placeholder='Search...' onKeyUp={(e)=>searchdata(e)} type="text" />
             </div>
             <div className="user-admin-pan" onClick={()=>openQuit()}>
-
                 <img src={data1.image} className='img-user-admin' alt="" />
+
             <p>{data1.fullname}</p>
             
             <FaSortDown />
