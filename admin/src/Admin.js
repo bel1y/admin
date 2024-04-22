@@ -87,7 +87,7 @@ console.log(res.data, "sell");
 })
 
 
-JSON.parse(localStorage.getItem("info"))
+JSON.parse(localStorage.getItem("info", setData1))
 
 
 },[])
