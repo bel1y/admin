@@ -351,6 +351,7 @@ function EditAccount(id) {
     })
     .catch(err=>{
         alert("Вы не смогли изменить данные")
+        document.querySelector(".big-modal-for-edit-admin").style="display:none"
     })
 }
 
