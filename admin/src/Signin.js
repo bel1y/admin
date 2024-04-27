@@ -20,7 +20,7 @@ export default function Signin() {
 
 
       axios
-      .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/login`, formdata)
+      .post(`https://api.abbas.uz/auth/v1/login`, formdata)
       .then((res) => {
         localStorage.setItem("info", JSON.stringify(res.data))
         if (res.data.type == 1) {
@@ -102,8 +102,10 @@ export default function Signin() {
 
         </div>
         <div className="little-footer-signin">
-          <p>© 2023 Mozg</p>
-          <p><RiGlobalLine /> РУ <IoChevronDownOutline /></p>
+          <p>© 2024 Mozg</p>
+          <p><RiGlobalLine /> РУ 
+          {/* <IoChevronDownOutline /> */}
+          </p>
         </div>
 
       

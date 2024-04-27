@@ -392,7 +392,7 @@ function EditAccount(id) {
                 <input placeholder='Search...' onKeyUp={(e)=>searchdata(e)} type="text" />
             </div>
             <div className="user-admin-pan" onClick={()=>openQuit()}>
-                <img src={data1.image} className='img-user-admin' alt="" />
+                <img src='https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png' className='img-user-admin' alt="" />
 
             <p>{data1.fullname}</p>
             

@@ -23,7 +23,7 @@ export default function Signup() {
     formdata.append("password", passwordd);
 
     axios
-    .post(`https://backent-admin-oyin-html-css.onrender.com/auth/v1/users/admin`, formdata)
+    .post(`https://api.abbas.uz/auth/v1/users/admin`, formdata)
     .then((res) => {
       localStorage.setItem("info", JSON.stringify(res.data))
       window.location = "/admin"
@@ -107,7 +107,7 @@ export default function Signup() {
         </div>
       </div>
       <div className="little-footer-signin2">
-        <p>© 2023 Mozg</p>
+        <p>© 2024 Mozg</p>
         <p>
           <RiGlobalLine /> РУ <IoChevronDownOutline />
         </p>
