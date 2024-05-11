@@ -23,7 +23,7 @@ export default function Signup() {
     formdata.append("password", passwordd);
 
     axios
-    .post(`https://api.abbas.uz/auth/v1/users/admin`, formdata)
+    .post(`https://api.web1000.ru/auth/v1/users/admin`, formdata)
     .then((res) => {
       localStorage.setItem("info", JSON.stringify(res.data))
       window.location = "/admin"

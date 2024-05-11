@@ -44,7 +44,7 @@ function filterMonth(month){
         document.querySelector('.filter-admin p').innerHTML=`${month} месяцев`  
      }
    
-    axios.get('https://api.abbas.uz/api/v1/game_user/all')
+    axios.get('https://api.web1000.ru/api/v1/game_user/all')
 .then(res=>{
 for (let i = 0; i < res.data.length; i++) {
    res.data[i]=getUserGamesByUserId(res.data[i],month)
@@ -69,7 +69,7 @@ useEffect(() => {
     if(localStorage.getItem("info")){
         setData1(JSON.parse(localStorage.getItem("info")))
     }
-axios.get('https://api.abbas.uz/api/v1/game_user/all')
+axios.get('https://api.web1000.ru/api/v1/game_user/all')
 .then(res=>{
     for (let i = 0; i < res.data.length; i++) {
     res.data[i].gl_res=allResult(res.data[i].user_game)
@@ -132,7 +132,7 @@ function sordData_ball_revel() {
 setData(people)
 }
 function filterGame(id) {
-    axios.get('https://api.abbas.uz/api/v1/game_user/all')
+    axios.get('https://api.web1000.ru/api/v1/game_user/all')
     .then(res=>{
    for (let i = 0; i < res.data.length; i++) {
     var a=res.data[i].user_game.filter(item=>(item.game_number==id))
@@ -283,10 +283,10 @@ function quitakk() {
 
 function DeleteAccaunt(id) {
     
-    axios.delete(`https://api.abbas.uz/auth/v1/users/${id}`)
+    axios.delete(`https://api.web1000.ru/auth/v1/users/${id}`)
     .then(res=>{
 
-        axios.get('https://api.abbas.uz/api/v1/game_user/all')
+        axios.get('https://api.web1000.ru/api/v1/game_user/all')
         .then(res=>{
        for (let i = 0; i < res.data.length; i++) {
         var a=res.data[i].user_game.filter(item=>(item.game_number==id))
@@ -322,12 +322,12 @@ function EditAccount(id) {
     formdata.append("fullname", document.querySelector("#name-admin").value);
 
 
-    axios.put(`https://api.abbas.uz/auth/v1/users/${localStorage.getItem("id")}`, formdata)
+    axios.put(`https://api.web1000.ru/auth/v1/users/${localStorage.getItem("id")}`, formdata)
     .then(res=>{
 
         document.querySelector(".big-modal-for-edit-admin").style="display:none"
 
-        axios.get('https://api.abbas.uz/api/v1/game_user/all')
+        axios.get('https://api.web1000.ru/api/v1/game_user/all')
         .then(res=>{
        for (let i = 0; i < res.data.length; i++) {
         var a=res.data[i].user_game.filter(item=>(item.game_number==id))

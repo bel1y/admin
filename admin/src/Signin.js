@@ -20,7 +20,7 @@ export default function Signin() {
 
 
       axios
-      .post(`https://api.abbas.uz/auth/v1/login`, formdata)
+      .post(`https://api.web1000.ru/auth/v1/login`, formdata)
       .then((res) => {
         localStorage.setItem("info", JSON.stringify(res.data))
         if (res.data.type == 1) {
