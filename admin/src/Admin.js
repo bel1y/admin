@@ -479,7 +479,8 @@ function EditAccount(id) {
             <FaSort /></th>
             <th className='wdth-bolishuchun'><p>Общая время</p>
             <FaSort /></th>
-            <th className='VscKebabVertical'> </th>
+            <th className='wdth-bolishuchun' ><p>Телефон</p> <FaSort /></th>
+            <th className='VscKebabVertical'></th>
           </tr>
           {data.map((item,key)=>{
            return <>
@@ -504,7 +505,8 @@ function EditAccount(id) {
             </td>
             <td className='wdth-bolishuchun'>
             <p>{item.gl_res.min} мин {item.gl_res.sec} сек</p>
-            </td>
+            </td>    
+            <td className='wdth-bolishuchun' >{item.phone}</td>
             <td className='VscKebabVertical'>
                 <VscKebabVertical onClick={()=>openEditDelete(key)}/>
                 <div className="delete-change-admin">
@@ -513,6 +515,7 @@ function EditAccount(id) {
                     <p onClick={()=>DeleteAccaunt(item.id)}><RiDeleteBin6Line className='RiDeleteBin6Line'  /> удалить</p>
                 </div>
                 </td>
+        
             </tr>
             <tr className='show-point-admin2'>
             <td className='wdth-bolishuchun'>
